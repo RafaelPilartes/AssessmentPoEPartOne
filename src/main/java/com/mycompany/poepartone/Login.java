@@ -7,10 +7,7 @@ public class Login {
     private String firstName;
     private String lastName;
     
-    public Login(String username, String password, String cellPhone, String firstName, String lastName) {
-        this.username = username;
-        this.password = password;
-        this.cellPhone = cellPhone;
+    public Login(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
     }
@@ -54,5 +51,17 @@ public class Login {
         } else {
             return "Username or password incorrect, please try again.";
         }
-    }    
+    }   
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    } 
+
+    public void setCellPhone(String cellPhone) {
+        this.cellPhone = cellPhone;
+    }
 }
