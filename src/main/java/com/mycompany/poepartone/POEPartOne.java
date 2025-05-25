@@ -1,5 +1,6 @@
 package com.mycompany.poepartone;
 import java.util.Scanner;
+import java.util.ArrayList;
 
 public class POEPartOne {
 
@@ -97,6 +98,68 @@ public class POEPartOne {
                 break;
             } else {
                 System.out.println(messageFeedback);
+            }
+        }
+        
+        // === SEND MESSAGES ===
+        if (isMatch) {
+            System.out.println("\nWelcome to QuickChat!");
+
+            ArrayList<Message> sentMessages = new ArrayList<>();
+
+            boolean active = true;
+            while (active) {
+                System.out.println("\nSelect an option:\n1) Send Messages\n2) Show recently sent messages\n3) Quit");
+                int option = scanner.nextInt();
+
+                if (option == 1) {
+                    System.out.println("How many messages do you want to send?");
+                    int quantity = scanner.nextInt();
+                    scanner.nextLine();
+
+                    for (int i = 1; i <= quantity; i++) {
+                        System.out.println("\nEnter recipient phone number (+...):");
+                        String recipient = scanner.nextLine();
+
+                        System.out.println("Enter message (max 250 chars):");
+                        String content = scanner.nextLine();
+
+                        if (content.length() > 250) {
+                            System.out.println("Message exceeds 250 characters by " + (content.length() - 250) + ", please reduce size.");
+                            i--;
+                            continue;
+                        }
+
+                        Message message = new Message(i, recipient, content);
+
+                        if (!message.checkRecipientCell()) {
+                            System.out.println("Cell phone number is incorrectly formatted or does not contain an international code. Please correct the number and try again.");
+                            i--;
+                            continue;
+                        }
+
+                        System.out.println(message.sentMessage(scanner));
+                        Message.printMessageDetails(message);
+
+                        String status = message.getMessageStatus();
+                        if (status.equals("Sent")) {
+                            sentMessages.add(message);
+                        }
+                    }
+
+                    int totalSent = Message.returnTotalMessages(sentMessages);
+                    System.out.println("\nTotal messages sent: " + totalSent);
+                } 
+                else if (option == 2) {
+                    System.out.println("Coming Soon.");
+                } 
+                else if (option == 3) {
+                    System.out.println("Goodbye!");
+                    active = false;
+                }
+                else {
+                    System.out.println("Invalid option.");
+                }
             }
         }
 
