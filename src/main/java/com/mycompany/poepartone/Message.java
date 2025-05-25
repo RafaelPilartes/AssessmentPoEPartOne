@@ -116,4 +116,9 @@ public class Message {
     public String getMessageStatus() {
         return this.status;
     }
+
+    public String getMessageID() {
+        return this.messageID;
+    }
 }
+
