@@ -52,7 +52,16 @@ public class Login {
             return "Username or password incorrect, please try again.";
         }
     }   
-
+    
+    // Getters
+    public String getUserName() {
+        return this.username;
+    }
+    public String getUserCellPhone() {
+        return this.cellPhone;
+    }
+    
+    // Setters
     public void setUsername(String username) {
         this.username = username;
     }

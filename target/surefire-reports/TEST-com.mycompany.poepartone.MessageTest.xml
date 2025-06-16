@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.mycompany.poepartone.MessageTest" time="0.34" tests="16" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.mycompany.poepartone.MessageTest" time="1.033" tests="16" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="23"/>
     <property name="sun.cpu.isalist" value="amd64"/>
@@ -15,8 +15,9 @@
     <property name="user.country" value="BR"/>
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk-23\bin"/>
-    <property name="sun.java.command" value="C:\Users\HP\AppData\Local\Temp\surefire11216569118246493904\surefirebooter-20250616113942363_3.jar C:\Users\HP\AppData\Local\Temp\surefire11216569118246493904 2025-06-16T11-39-41_978-jvmRun1 surefire-20250616113942363_1tmp surefire_0-20250616113942363_2tmp"/>
+    <property name="sun.java.command" value="C:\Users\HP\AppData\Local\Temp\surefire9143597085407206035\surefirebooter-20250616120900006_3.jar C:\Users\HP\AppData\Local\Temp\surefire9143597085407206035 2025-06-16T12-08-59_502-jvmRun1 surefire-20250616120900006_1tmp surefire_0-20250616120900006_2tmp"/>
     <property name="jdk.debug" value="release"/>
+    <property name="test" value="com.mycompany.poepartone.MessageTest"/>
     <property name="surefire.test.class.path" value="C:\Users\HP\OneDrive\Documentos\_Rosebank College\Modules\PROG5121 - Programming 1A\Assessments\Assessments 1\POEPartOne\target\test-classes;C:\Users\HP\OneDrive\Documentos\_Rosebank College\Modules\PROG5121 - Programming 1A\Assessments\Assessments 1\POEPartOne\target\classes;C:\Users\HP\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.6.0\junit-jupiter-api-5.6.0.jar;C:\Users\HP\.m2\repository\org\apiguardian\apiguardian-api\1.1.0\apiguardian-api-1.1.0.jar;C:\Users\HP\.m2\repository\org\opentest4j\opentest4j\1.2.0\opentest4j-1.2.0.jar;C:\Users\HP\.m2\repository\org\junit\platform\junit-platform-commons\1.6.0\junit-platform-commons-1.6.0.jar;C:\Users\HP\.m2\repository\org\junit\jupiter\junit-jupiter-params\5.6.0\junit-jupiter-params-5.6.0.jar;C:\Users\HP\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.6.0\junit-jupiter-engine-5.6.0.jar;C:\Users\HP\.m2\repository\org\junit\platform\junit-platform-engine\1.6.0\junit-platform-engine-1.6.0.jar;C:\Users\HP\.m2\repository\com\googlecode\json-simple\json-simple\1.1.1\json-simple-1.1.1.jar;C:\Users\HP\.m2\repository\junit\junit\4.10\junit-4.10.jar;C:\Users\HP\.m2\repository\org\hamcrest\hamcrest-core\1.1\hamcrest-core-1.1.jar;"/>
     <property name="sun.cpu.endian" value="little"/>
     <property name="user.home" value="C:\Users\HP"/>
@@ -30,7 +31,7 @@
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
-    <property name="surefire.real.class.path" value="C:\Users\HP\AppData\Local\Temp\surefire11216569118246493904\surefirebooter-20250616113942363_3.jar"/>
+    <property name="surefire.real.class.path" value="C:\Users\HP\AppData\Local\Temp\surefire9143597085407206035\surefirebooter-20250616120900006_3.jar"/>
     <property name="user.script" value=""/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="23.0.2+7-58"/>
@@ -41,7 +42,7 @@
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="file.encoding" value="UTF-8"/>
     <property name="java.vm.name" value="Java HotSpot(TM) 64-Bit Server VM"/>
-    <property name="maven.ext.class.path" value="C:\Program Files\NetBeans-20\netbeans\java\maven-nblib\netbeans-eventspy.jar;C:\Program Files\NetBeans-20\netbeans\java\maven-nblib\netbeans-eventspy.jar"/>
+    <property name="maven.ext.class.path" value="C:\Users\HP\.vscode\extensions\oracle.oracle-java-24.0.0\nbcode\java\maven-nblib\netbeans-eventspy.jar"/>
     <property name="localRepository" value="C:\Users\HP\.m2\repository"/>
     <property name="java.vendor.url.bug" value="https://bugreport.java.com/bugreport/"/>
     <property name="java.io.tmpdir" value="C:\Users\HP\AppData\Local\Temp\"/>
@@ -59,22 +60,22 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="67.0"/>
   </properties>
-  <testcase name="testSearchMessagesByRecipient" classname="com.mycompany.poepartone.MessageTest" time="0.206"/>
-  <testcase name="testDiscardMessage" classname="com.mycompany.poepartone.MessageTest" time="0.01"/>
+  <testcase name="testSearchMessagesByRecipient" classname="com.mycompany.poepartone.MessageTest" time="0.677"/>
+  <testcase name="testDiscardMessage" classname="com.mycompany.poepartone.MessageTest" time="0.008"/>
   <testcase name="testMessageHashSuccess" classname="com.mycompany.poepartone.MessageTest" time="0.009"/>
-  <testcase name="testRecipientNumberSuccess" classname="com.mycompany.poepartone.MessageTest" time="0.021"/>
-  <testcase name="testDisplayLongestMessage" classname="com.mycompany.poepartone.MessageTest" time="0.007"/>
-  <testcase name="testSearchByMessageID" classname="com.mycompany.poepartone.MessageTest" time="0.003"/>
-  <testcase name="testStoreMessage" classname="com.mycompany.poepartone.MessageTest" time="0.004"/>
-  <testcase name="testDeleteMessageUsingHash" classname="com.mycompany.poepartone.MessageTest" time="0.004"/>
-  <testcase name="testRecipientNumberFailure" classname="com.mycompany.poepartone.MessageTest" time="0.004"/>
+  <testcase name="testRecipientNumberSuccess" classname="com.mycompany.poepartone.MessageTest" time="0.006"/>
+  <testcase name="testDisplayLongestMessage" classname="com.mycompany.poepartone.MessageTest" time="0.005"/>
+  <testcase name="testSearchByMessageID" classname="com.mycompany.poepartone.MessageTest" time="0.004"/>
+  <testcase name="testStoreMessage" classname="com.mycompany.poepartone.MessageTest" time="0.003"/>
+  <testcase name="testDeleteMessageUsingHash" classname="com.mycompany.poepartone.MessageTest" time="0.005"/>
+  <testcase name="testRecipientNumberFailure" classname="com.mycompany.poepartone.MessageTest" time="0.009"/>
   <testcase name="testSentMessagesArrayCorrectlyPopulated" classname="com.mycompany.poepartone.MessageTest" time="0.003"/>
-  <testcase name="testMessageLengthSuccess" classname="com.mycompany.poepartone.MessageTest" time="0.003"/>
-  <testcase name="testMessageIDGenerated" classname="com.mycompany.poepartone.MessageTest" time="0.004"/>
-  <testcase name="testSendMessageSuccess" classname="com.mycompany.poepartone.MessageTest" time="0.003"/>
-  <testcase name="testMessageLengthFailure" classname="com.mycompany.poepartone.MessageTest" time="0.007"/>
-  <testcase name="testDisplaySentMessagesReport" classname="com.mycompany.poepartone.MessageTest" time="0.003"/>
-  <testcase name="testTotalMessagesSent" classname="com.mycompany.poepartone.MessageTest" time="0.021">
+  <testcase name="testMessageLengthSuccess" classname="com.mycompany.poepartone.MessageTest" time="0.009"/>
+  <testcase name="testMessageIDGenerated" classname="com.mycompany.poepartone.MessageTest" time="0.003"/>
+  <testcase name="testSendMessageSuccess" classname="com.mycompany.poepartone.MessageTest" time="0.006"/>
+  <testcase name="testMessageLengthFailure" classname="com.mycompany.poepartone.MessageTest" time="0.016"/>
+  <testcase name="testDisplaySentMessagesReport" classname="com.mycompany.poepartone.MessageTest" time="0.005"/>
+  <testcase name="testTotalMessagesSent" classname="com.mycompany.poepartone.MessageTest" time="0.144">
     <system-out><![CDATA[Choose an option:
 1) Send Message
 2) Disregard Message

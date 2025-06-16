@@ -109,12 +109,13 @@ public class POEPartOne {
             while (active) {
                 System.out.println("\nSelect an option:");
                 System.out.println("1) Send Messages");
-                System.out.println("2) Show Recently Sent Messages");
+                System.out.println("2) Display senders and recipients of all sent messages");
                 System.out.println("3) Search Message by ID");
                 System.out.println("4) Search Messages by Recipient");
                 System.out.println("5) Delete Message by Hash");
                 System.out.println("6) Display Sent Messages Report");
-                System.out.println("7) Quit");
+                System.out.println("7) Display the longest sent messagage");
+                System.out.println("8) Quit");
                 
                 int option = 0;
                 
@@ -164,14 +165,7 @@ public class POEPartOne {
                     System.out.println("\nTotal messages sent: " + totalSent);
                 } 
                 else if (option == 2) {
-                    if (Message.sentMessages.isEmpty()) {
-                        System.out.println("No sent messages found.");
-                    } else {
-                        System.out.println("Recently sent messages:");
-                        for (Message msg : Message.sentMessages) {
-                            System.out.println("To: " + msg.getRecipient() + " - Message: " + msg.getContent());
-                        }
-                    }
+                    Message.displaySendersAndRecipients(user.getUserCellPhone());
                 } 
                 else if (option == 3) {
                     System.out.print("Enter message ID to search: ");
@@ -192,6 +186,14 @@ public class POEPartOne {
                     Message.displaySentMessageReport();
                 }
                 else if (option == 7) {
+                    Message longest = Message.getLongestSentMessage();
+                    if (longest != null) {
+                        Message.printMessageDetails(longest);
+                    } else {
+                        System.out.println("No sent messages found.");
+                    }
+                }
+                else if (option == 8) {
                     System.out.println("Goodbye!");
                     active = false;
                 }

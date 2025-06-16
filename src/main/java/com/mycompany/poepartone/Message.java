@@ -155,40 +155,60 @@ public class Message {
     }
     
     // --------------- NEW FEATURES -------------------
-    public static void displaySendersAndRecipients() {
-        System.out.println("Senders and recipients of all sent messages:");
-        for (Message msg : sentMessages) {
-            System.out.println("Sender: System User | Recipient: " + msg.recipient);
+    public static void displaySendersAndRecipients(String sender) {
+        System.out.println("=== Senders and recipients of all sent messages ===");
+        if (Message.sentMessages.isEmpty()) {
+            System.out.println("No sent messages found.");
+        } else {
+            System.out.println("Senders and recipients of all sent messages:");
+            for (Message msg : sentMessages) {
+                System.out.println("Sender: " +  sender + " | Recipient: " + msg.recipient);
+            }
         }
     }
     
     public static Message getLongestSentMessage() {
+        System.out.println("=== Longest sent messagages ===");
         return sentMessages.stream()
                 .max(Comparator.comparingInt(m -> m.content.length()))
                 .orElse(null);
     }
     
     public static void searchMessageByID(String id) {
-        for (Message msg : sentMessages) {
-            if (msg.messageID.equals(id)) {
-                System.out.println("Recipient: " + msg.recipient);
-                System.out.println("Message: " + msg.content);
-                return;
+        System.out.println("=== Message by ID ===");
+        if (Message.sentMessages.isEmpty()) {
+            System.out.println("No sent messages.");
+        } else {
+            boolean found = false;
+            
+            for (Message msg : sentMessages) {
+                if (msg.messageID.equals(id)) {
+                    System.out.println("Recipient: " + msg.recipient);
+                    System.out.println("Message: " + msg.content);
+                    return;
+                }
+            }
+            if (!found) {
+                System.out.println("Message ID not found.");
             }
         }
-        System.out.println("Message ID not found.");
     }
     
     public static void searchMessagesByRecipient(String recipient) {
-        boolean found = false;
-        for (Message msg : sentMessages) {
-            if (msg.recipient.equals(recipient)) {
-                System.out.println("Message to " + recipient + ": " + msg.content);
-                found = true;
+        System.out.println("=== Messages by Recipient ===");
+        if (Message.sentMessages.isEmpty()) {
+            System.out.println("No sent messages.");
+        } else {
+            boolean found = false;
+            for (Message msg : sentMessages) {
+                if (msg.recipient.equals(recipient)) {
+                    System.out.println("Message to " + recipient + ": " + msg.content);
+                    found = true;
+                }
             }
-        }
-        if (!found) {
-            System.out.println("No messages found for recipient " + recipient);
+            if (!found) {
+                System.out.println("No messages found for recipient " + recipient);
+            }
         }
     }
     
@@ -210,13 +230,17 @@ public class Message {
     
     public static void displaySentMessageReport() {
         System.out.println("=== Sent Messages Report ===");
-        for (Message msg : sentMessages) {
-            System.out.println("ID: " + msg.messageID);
-            System.out.println("Recipient: " + msg.recipient);
-            System.out.println("Message: " + msg.content);
-            System.out.println("Hash: " + msg.messageHash);
-            System.out.println("Status: " + msg.status);
-            System.out.println("--------------------------");
+        if (Message.sentMessages.isEmpty()) {
+            System.out.println("No sent messages.");
+        } else {
+            for (Message msg : sentMessages) {
+                System.out.println("ID: " + msg.messageID);
+                System.out.println("Recipient: " + msg.recipient);
+                System.out.println("Message: " + msg.content);
+                System.out.println("Hash: " + msg.messageHash);
+                System.out.println("Status: " + msg.status);
+                System.out.println("--------------------------");
+            }
         }
     }
 }
