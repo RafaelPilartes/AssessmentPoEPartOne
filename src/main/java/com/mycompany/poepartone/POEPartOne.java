@@ -105,17 +105,35 @@ public class POEPartOne {
         if (isMatch) {
             System.out.println("\nWelcome to QuickChat!");
 
-            ArrayList<Message> sentMessages = new ArrayList<>();
-
             boolean active = true;
             while (active) {
-                System.out.println("\nSelect an option:\n1) Send Messages\n2) Show recently sent messages\n3) Quit");
-                int option = scanner.nextInt();
+                System.out.println("\nSelect an option:");
+                System.out.println("1) Send Messages");
+                System.out.println("2) Show Recently Sent Messages");
+                System.out.println("3) Search Message by ID");
+                System.out.println("4) Search Messages by Recipient");
+                System.out.println("5) Delete Message by Hash");
+                System.out.println("6) Display Sent Messages Report");
+                System.out.println("7) Quit");
+                
+                int option = 0;
+                
+                try {
+                    option = Integer.parseInt(scanner.nextLine());
+                } catch (NumberFormatException e) {
+                    System.out.println("Please enter a valid number.");
+                    continue;
+                }
 
                 if (option == 1) {
                     System.out.println("How many messages do you want to send?");
-                    int quantity = scanner.nextInt();
-                    scanner.nextLine();
+                    int quantity = 0;
+                    try {
+                        quantity = Integer.parseInt(scanner.nextLine());
+                    } catch (NumberFormatException e) {
+                        System.out.println("Invalid number. Returning to main menu.");
+                        break;
+                    }
 
                     for (int i = 1; i <= quantity; i++) {
                         System.out.println("\nEnter recipient phone number (+...):");
@@ -140,20 +158,40 @@ public class POEPartOne {
 
                         System.out.println(message.sentMessage(scanner));
                         Message.printMessageDetails(message);
-
-                        String status = message.getMessageStatus();
-                        if (status.equals("Sent")) {
-                            sentMessages.add(message);
-                        }
                     }
 
-                    int totalSent = Message.returnTotalMessages(sentMessages);
+                    int totalSent = Message.returnTotalMessages(Message.sentMessages);
                     System.out.println("\nTotal messages sent: " + totalSent);
                 } 
                 else if (option == 2) {
-                    System.out.println("Coming Soon.");
+                    if (Message.sentMessages.isEmpty()) {
+                        System.out.println("No sent messages found.");
+                    } else {
+                        System.out.println("Recently sent messages:");
+                        for (Message msg : Message.sentMessages) {
+                            System.out.println("To: " + msg.getRecipient() + " - Message: " + msg.getContent());
+                        }
+                    }
                 } 
                 else if (option == 3) {
+                    System.out.print("Enter message ID to search: ");
+                    String searchID = scanner.nextLine();
+                    Message.searchMessageByID(searchID);
+                }
+                else if (option == 4) {
+                    System.out.print("Enter recipient phone number to search messages: ");
+                    String searchRecipient = scanner.nextLine();
+                    Message.searchMessagesByRecipient(searchRecipient);
+                }
+                else if (option == 5) {
+                    System.out.print("Enter message hash to delete: ");
+                    String hashToDelete = scanner.nextLine();
+                    Message.deleteMessageByHash(hashToDelete);
+                }
+                else if (option == 6) {
+                    Message.displaySentMessageReport();
+                }
+                else if (option == 7) {
                     System.out.println("Goodbye!");
                     active = false;
                 }

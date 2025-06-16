@@ -7,6 +7,8 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Comparator;
+import java.util.Iterator;
 import java.util.UUID;
 
 public class Message {
@@ -17,12 +19,22 @@ public class Message {
     private String messageHash;
     private String status;
 
+    // Arrays to store messages and hashes
+    public static ArrayList<Message> sentMessages = new ArrayList<>();
+    public static ArrayList<Message> disregardedMessages = new ArrayList<>();
+    public static ArrayList<Message> storedMessages = new ArrayList<>();
+    public static ArrayList<String> messageHashes = new ArrayList<>();
+    public static ArrayList<String> messageIDs = new ArrayList<>();
+    
     public Message(int messageNumber, String recipient, String content) {
         this.messageID = generateMessageID();
         this.messageNumber = messageNumber;
         this.recipient = recipient;
         this.content = content;
         this.messageHash = createMessageHash();
+        this.status = null;
+        messageIDs.add(this.messageID);
+        messageHashes.add(this.messageHash);
     }
 
     // Custom Message ID generator (Created by me, idea assisted by stackoverflow)
@@ -46,8 +58,8 @@ public class Message {
 
     public String createMessageHash() {
         String[] words = content.trim().split("\\s+"); // Logic to split by stackoverflow: https://stackoverflow.com/questions/40090776/what-does-s-split-s-means-here-in-the-below-code
-        String first = words[0].toUpperCase();
-        String last = words[words.length - 1].toUpperCase();
+        String first = words.length > 0 ? words[0].toUpperCase() : "";
+        String last = words.length > 0 ? words[words.length - 1].toUpperCase() : "";
         return messageID.substring(0, 2) + ":" + messageNumber + ":" + first + last;
     }
 
@@ -58,12 +70,15 @@ public class Message {
 
         if (choice == 1) {
             this.status = "Sent";
+            sentMessages.add(this);
             return "Message successfully sent.";
         } else if (choice == 2) {
             this.status = "Discarded";
+            disregardedMessages.add(this);
             return "Press 0 to delete message.";
         } else if (choice == 3) {
             this.status = "Stored";
+            storedMessages.add(this);
             storeMessage();
             return "Message successfully stored.";
         } else {
@@ -79,6 +94,7 @@ public class Message {
         json.put("recipient", recipient);
         json.put("message", content);
         json.put("messageHash", messageHash);
+        json.put("status", status);
 
         JSONArray container = new JSONArray();
         container.add(json);
@@ -112,13 +128,96 @@ public class Message {
     }
     
     
-    // Getters for message status
+    // Getters
     public String getMessageStatus() {
         return this.status;
     }
 
     public String getMessageID() {
         return this.messageID;
+    }
+
+    public String getRecipient() {
+        return this.recipient;
+    }
+
+    public String getContent() {
+        return this.content;
+    }
+
+    public String getMessageHash() {
+        return this.messageHash;
+    }
+    
+    // Setters
+    public void setStatus(String status) {
+        this.status = status;
+    }
+    
+    // --------------- NEW FEATURES -------------------
+    public static void displaySendersAndRecipients() {
+        System.out.println("Senders and recipients of all sent messages:");
+        for (Message msg : sentMessages) {
+            System.out.println("Sender: System User | Recipient: " + msg.recipient);
+        }
+    }
+    
+    public static Message getLongestSentMessage() {
+        return sentMessages.stream()
+                .max(Comparator.comparingInt(m -> m.content.length()))
+                .orElse(null);
+    }
+    
+    public static void searchMessageByID(String id) {
+        for (Message msg : sentMessages) {
+            if (msg.messageID.equals(id)) {
+                System.out.println("Recipient: " + msg.recipient);
+                System.out.println("Message: " + msg.content);
+                return;
+            }
+        }
+        System.out.println("Message ID not found.");
+    }
+    
+    public static void searchMessagesByRecipient(String recipient) {
+        boolean found = false;
+        for (Message msg : sentMessages) {
+            if (msg.recipient.equals(recipient)) {
+                System.out.println("Message to " + recipient + ": " + msg.content);
+                found = true;
+            }
+        }
+        if (!found) {
+            System.out.println("No messages found for recipient " + recipient);
+        }
+    }
+    
+    public static boolean deleteMessageByHash(String hash) {
+        Iterator<Message> iterator = sentMessages.iterator();
+        while (iterator.hasNext()) {
+            Message msg = iterator.next();
+            if (msg.messageHash.equals(hash)) {
+                iterator.remove();
+                messageHashes.remove(hash);
+                messageIDs.remove(msg.messageID);
+                System.out.println("Message with hash " + hash + " deleted.");
+                return true;
+            }
+        }
+        System.out.println("No message with hash " + hash + " found.");
+        return false;
+    }
+    
+    public static void displaySentMessageReport() {
+        System.out.println("=== Sent Messages Report ===");
+        for (Message msg : sentMessages) {
+            System.out.println("ID: " + msg.messageID);
+            System.out.println("Recipient: " + msg.recipient);
+            System.out.println("Message: " + msg.content);
+            System.out.println("Hash: " + msg.messageHash);
+            System.out.println("Status: " + msg.status);
+            System.out.println("--------------------------");
+        }
     }
 }
 
